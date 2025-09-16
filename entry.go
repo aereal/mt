@@ -41,7 +41,7 @@ type Entry struct {
 	// Status is the post status of the entry.
 	//
 	// refs. https://movabletype.org/documentation/appendices/import-export-format.html#status
-	Status string
+	Status Status
 
 	// AllowComments is the value for the "allow comments" flag for the entry.
 	//

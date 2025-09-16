@@ -103,7 +103,12 @@ func Parse(r io.Reader, opts ...ParseOption) iter.Seq2[*Entry, error] {
 			case FieldBasename:
 				current.Basename = value
 			case FieldStatus:
-				current.Status = value // TODO: validate
+				st, err := ParseStatus(value)
+				if err != nil {
+					reportParseError(FieldStatus, err)
+					return
+				}
+				current.Status = st
 			case FieldAllowComments:
 				v, err := parseIntBool(value)
 				if err != nil {

@@ -62,3 +62,11 @@ var _ error = (*InvalidConvertBreaksError)(nil)
 func (e *InvalidConvertBreaksError) Error() string {
 	return fmt.Sprintf("invalid convert breaks: %q", e.Value)
 }
+
+type InvalidStatusError struct {
+	Value string
+}
+
+var _ error = (*InvalidStatusError)(nil)
+
+func (e *InvalidStatusError) Error() string { return fmt.Sprintf("invalid status: %q", e.Value) }
