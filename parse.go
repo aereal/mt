@@ -119,7 +119,12 @@ func Parse(r io.Reader, opts ...ParseOption) iter.Seq2[*Entry, error] {
 				}
 				current.AllowPings = v
 			case FieldConvertBreaks:
-				current.ConvertBreaks = value // TODO: validate
+				cb, err := ParseConvertBreaks(value)
+				if err != nil {
+					reportParseError(FieldConvertBreaks, err)
+					return
+				}
+				current.ConvertBreaks = cb
 			case FieldPrimaryCategory:
 				current.PrimaryCategory = value
 			case FieldCategory:

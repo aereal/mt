@@ -40,7 +40,7 @@ func TestParse(t *testing.T) {
 			Tags:            []string{"Movable Type", "foo", "bar"},
 			AllowComments:   true,
 			AllowPings:      true,
-			ConvertBreaks:   "richtext",
+			ConvertBreaks:   mt.ConvertBreaksRichtext,
 			Body:            "これは本文です。\n",
 			ExtendedBody:    "ここに追記の本文が表示されます。\n",
 			Comments: []*mt.Comment{
@@ -69,7 +69,7 @@ func TestParse(t *testing.T) {
 			Tags:            []string{"Movable Type", "foo", "bar"},
 			AllowComments:   true,
 			AllowPings:      true,
-			ConvertBreaks:   "richtext",
+			ConvertBreaks:   mt.ConvertBreaksRichtext,
 			Body:            "これは2番目の記事の本文です。 これは\n複数行から成ります。\n",
 			Excerpt:         "この記事は追記がありませんが、\n概要はあります。 特殊な例です。\n",
 			Comments: []*mt.Comment{

@@ -56,7 +56,7 @@ type Entry struct {
 	// ConvertBreaks is the value for the "convert breaks" flag for the entry.
 	//
 	// refs. https://movabletype.org/documentation/appendices/import-export-format.html#convert-breaks
-	ConvertBreaks string
+	ConvertBreaks ConvertBreaks
 
 	// Body is the body of the entry.
 	Body string

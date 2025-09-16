@@ -52,3 +52,13 @@ var _ error = (*UnexpectedBooleanNumberError)(nil)
 func (e *UnexpectedBooleanNumberError) Error() string {
 	return fmt.Sprintf("expected 0 or 1 but got %d", e.Actual)
 }
+
+type InvalidConvertBreaksError struct {
+	Value string
+}
+
+var _ error = (*InvalidConvertBreaksError)(nil)
+
+func (e *InvalidConvertBreaksError) Error() string {
+	return fmt.Sprintf("invalid convert breaks: %q", e.Value)
+}
