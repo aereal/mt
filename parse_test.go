@@ -16,18 +16,6 @@ var testdata embed.FS
 func TestParse(t *testing.T) {
 	t.Parallel()
 
-	f, err := testdata.Open("testdata/ok.txt")
-	if err != nil {
-		t.Fatal(err)
-	}
-	t.Cleanup(func() { _ = f.Close() })
-	gotEntries := make([]*mt.Entry, 0)
-	for entry, err := range mt.Parse(f) {
-		if err != nil {
-			t.Fatal(err)
-		}
-		gotEntries = append(gotEntries, entry)
-	}
 	want := []*mt.Entry{
 		{
 			Author:          "Foo Bar",
@@ -81,6 +69,25 @@ func TestParse(t *testing.T) {
 				},
 			},
 		},
+	}
+
+	runTest(t, "testdata/ok.txt", want)
+}
+
+func runTest(t *testing.T, dataName string, want []*mt.Entry) {
+	t.Helper()
+
+	f, err := testdata.Open(dataName)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = f.Close() })
+	gotEntries := make([]*mt.Entry, 0)
+	for entry, err := range mt.Parse(f) {
+		if err != nil {
+			t.Fatal(err)
+		}
+		gotEntries = append(gotEntries, entry)
 	}
 	if diff := cmp.Diff(want, gotEntries); diff != "" {
 		t.Errorf("(-want, +got):\n%s", diff)
