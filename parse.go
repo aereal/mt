@@ -39,7 +39,10 @@ func Parse(r io.Reader, opts ...ParseOption) iter.Seq2[*Entry, error] {
 			_ = yield(nil, &ParseError{LineNum: lineNum, Field: field, Text: text, Err: err})
 		}
 
-		current := &Entry{}
+		current := &Entry{
+			ConvertBreaks: cfg.defaultConvertBreaks,
+			AllowComments: cfg.defaultAllowComments,
+		}
 		for scanner.Scan() {
 			lineNum++
 			text = scanner.Text()
