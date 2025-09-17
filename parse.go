@@ -47,7 +47,7 @@ func Parse(r io.Reader, opts ...ParseOption) iter.Seq2[*Entry, error] {
 		for scanner.Scan() {
 			lineNum++
 			text = scanner.Text()
-			if text == multilineFieldDelimiter {
+			if text == multilineFieldDelimiter || text == "" {
 				continue
 			}
 			if text == entryDelimiter {
