@@ -22,4 +22,5 @@ const (
 	FieldURL             Field = "URL"
 )
 
+// Field is pre-defined identifiers of the metadata section.
 type Field string

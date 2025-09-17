@@ -20,6 +20,7 @@ const (
 	tagQuotation            = `"`
 )
 
+// Parse parses the contents from r as [Entry].
 func Parse(r io.Reader, opts ...ParseOption) iter.Seq2[*Entry, error] {
 	return func(yield func(*Entry, error) bool) {
 		cfg := new(parseConfig)
